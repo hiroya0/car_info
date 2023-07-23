@@ -1,2 +1,15 @@
-<h1>Homes#index</h1>
-<p>Find me in app/views/homes/index.html.erb</p>
+<% if user_signed_in? %>
+<header>
+<h2>Cars Infomation</h2>
+<a><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-white" %></a>
+</header>
+
+<p class="h1">車をもっと知ろう</p>
+<p>当アプリは車の情報を素早く検索、みんなと共有できる特化型の情報検索アプリです</p>
+
+<% else %>
+<header>
+<h2>Cars Infomation</h2>
+<a><%= link_to "ログイン", "/users/sign_in" %></a>
+<a><%= link_to "新規登録", "/users/sign_up" %></a>
+</header>
