@@ -86,6 +86,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.12.0)
     ffi (1.15.5)
     globalid (1.1.0)
@@ -122,6 +126,7 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
+    news-api (0.2.0)
     nio4r (2.5.9)
     nokogiri (1.15.3)
       mini_portile2 (~> 2.8.2)
@@ -241,8 +246,10 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise
+  dotenv-rails
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  news-api
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.3, >= 6.1.3.2)
