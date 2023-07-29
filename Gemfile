@@ -61,3 +61,5 @@ gem 'devise'
 gem "news-api"
 
 gem 'dotenv-rails'
+
+gem 'pry-byebug'
