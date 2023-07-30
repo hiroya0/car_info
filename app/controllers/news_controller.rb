@@ -1,28 +1,13 @@
+require 'news-api'
+require 'uri'
+
 class NewsController < ApplicationController
-    require 'news-api'
-    def index
-        newsapi = News.new(ENV['NEWS_API_KEY'])
-
-        parameters = {
-            q: URI.encode('車'),
-            language: 'jp'
-        }
-
-        response = 
-        newsapi.get_top_headlines(parameters)
-
-        data = if response.is_a?(String)
-                    JSON.parse(response)
-                else
-                    response
-                end
-
-        if data[status] == 'ok'
-            @articles = data['articles']
-        else
-            @error = 'ニュースの取得に失敗しました。'
-        end
-       
-
-    end
+ def index
+   news = News.new(ENV['NEWS_API_KEY'])
+   keywords = ['新車','自動車産業']
+   encoded_keywords = keywords.map { |keyword| URI.encode_www_form_component(keyword) }
+   query = encoded_keywords.join(',')
+   @news = news.get_everything(language: 'jp', q: query)
+ end
 end
+

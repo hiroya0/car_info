@@ -4,24 +4,26 @@
 <hr>
 
 <div class="album py-5 bg-light">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card mb-4 shadow-sm">
-            <% if @error %>
-              <p> <%= @error %> </p>
-            <% else %>
-              <ul>
-                <% @articles.each do |article| %>
-              <li>
-                <%= link_to article['title'],article['url'] %> 
-                <%= article['sourse']['name'] %>
-              </li>
-            <% end %>
-              </ul>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
+ <div class="container">
+   <div class="row">
+     <% @news.each do |news| %>
+       <div class="col-md-4">
+         <%= link_to news.url do %>
+           <div class="card mb-4 shadow-sm">
+             <% if news.urlToImage.present? %>
+               <%= image_tag(news.urlToImage, class: "item-img") %>
+             <% else %>
+               
+             <% end %>
+             <div class="card-body">
+               <p class="card-text">
+                 <%= news.title %>
+               </p>
+             </div>
+           </div>
+         <% end %>
+       </div>
+     <% end %>
+   </div>
+ </div>
 </div>
