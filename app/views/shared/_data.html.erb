@@ -1,7 +1,8 @@
-<header>
+<header class="sticky-top bg-light">
 <p>Powered by <%= link_to "https://newsapi.org" do %>　News API　<% end %> <p>
+<p>現在の最新のニュースです（時刻を表示する）</p>
+<%= link_to "トップページに戻る",homes_index_path %>
 </header>
-<hr>
 
 <div class="album py-5 bg-light">
  <div class="container">
@@ -13,11 +14,11 @@
              <% if news.urlToImage.present? %>
                <%= image_tag(news.urlToImage, class: "item-img") %>
              <% else %>
-               
+              <p>いらすとやの画像を挿入する</p>
              <% end %>
              <div class="card-body">
                <p class="card-text">
-                 <%= news.title %>
+                 <%= news.title.truncate(30) %>
                </p>
              </div>
            </div>
