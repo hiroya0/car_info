@@ -7,7 +7,15 @@ class NewsController < ApplicationController
    keywords = ['トヨタ']
    encoded_keywords = keywords.map { |keyword| URI.encode_www_form_component(keyword) }
    query = encoded_keywords.join('OR')
-   @news = news.get_everything(language: 'jp', q: query)
+   @article = news.get_everything(language: 'jp', q: query)
+   @article.each do |article_data|
+    article = Article.new(
+      title: article_data.title,
+      url: article_data.url,
+      image_url: article_data.urlToImage
+    )
+    article.save
+    end
  end
 
  def show
@@ -15,7 +23,7 @@ class NewsController < ApplicationController
    keywords = ['トヨタ']
    encoded_keywords = keywords.map { |keyword| URI.encode_www_form_component(keyword) }
    query = encoded_keywords.join('OR')
-   @news = news.get_everything(language: 'jp', q: query)
+   @article = news.get_everything(language: 'jp', q: query)
    @comment = Coment.new
  end
 end
