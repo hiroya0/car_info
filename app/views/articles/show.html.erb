@@ -1,2 +1,13 @@
-<h1>Articles#show</h1>
-<p>Find me in app/views/articles/show.html.erb</p>
+<div class="container mt-4">
+ <div class="card">
+   <% if @article.image_url.present? %>
+     <%= image_tag(@article.image_url, class: "card-img-top") %>
+   <% else %>
+     <p>いらすとやの画像を挿入する</p>
+   <% end %>
+   <div class="card-body">
+     <h5 class="card-title"><%= @article.title %></h5>
+     <a href="<%= @article.url %>" class="btn btn-primary" target="_blank">元の記事を読む</a>
+   </div>
+ </div>
+</div>
