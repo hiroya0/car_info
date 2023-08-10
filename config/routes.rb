@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'articles/show'
   get 'homes/index'
   get 'news/index',to: 'news#show'
   devise_for :users, controllers: {
