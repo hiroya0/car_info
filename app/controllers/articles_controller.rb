@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
   def show
-    @article = Article.find_by(params[:id])
+    @article = Article.find(params[:format])
   end
 end

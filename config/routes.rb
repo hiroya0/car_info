@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   }
   root 'homes#index'
   resources :homes
-  resources :news, only: [:index, :show]
+  resource :news, only: [:index, :show]
   resource :article
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
