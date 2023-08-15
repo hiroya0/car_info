@@ -19,7 +19,7 @@
              <p class="card-text">
                <%= article.title %>
              </p>
-             <%= link_to "詳細を見る",article_path(@articles) %>
+             <a href="<%= article.id %>" class="btn btn-primary" target="_blank">記事を読む</a>
            </div>
          </div>
        </div>
