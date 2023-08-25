@@ -1,1 +1,29 @@
-<%= render partial: "shared/data" %>
+<header class="sticky-top bg-light">
+    <p>Powered by <%= link_to "https://newsapi.org" do %> News API <% end %> </p>
+    <p>現在の最新のニュースです（時刻を表示する）</p>
+    <%= link_to "トップページに戻る", homes_index_path %>
+</header>
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <% @db_articles.each do |article| %>
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <% if article.image_url.present? %> <!-- APIのデータのキー名に合わせて修正が必要な場合あり -->
+                <%= image_tag article.image_url, :size =>'240x160' %>
+            <% else %>
+                <p>イラスト屋の画像を添付</p>
+            <% end %>
+            <div class="card-body">
+              <p class="card-text">
+                <%= article.title %>
+              </p>
+              <%= "article_id: #{article.id}" %>
+              <%= link_to "詳細ページへ", article_path(article.id) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
