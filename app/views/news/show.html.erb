@@ -1,15 +1,15 @@
 <div class="container mt-4">
  <div class="card">
-   <% if @article.image_url.present? %>
-     <%= image_tag(@article.image_url, class: "card-img-top") %>
+   <% if @article.urlToImage.present? %>
+     <%= image_tag(@article.urlToImage, class: "card-img-top") %>
    <% else %>
      <p>いらすとやの画像を挿入する</p>
    <% end %>
    <div class="card-body">
      <h5 class="card-title"><%= @article.title %></h5>
      <%= @article.description %>
-     <a href="<%= @article.url %>" class="btn btn-primary" target="_blank">元の記事を読む</a>
+     <a href="<%= @article.url %>" class="btn btn-primary" >元の記事を読む</a>
    </div>
-   <a href="javascript:history.back()">[戻る]</a>
+   <a href="index">[ニュース一覧へ]</a>
  </div>
 </div>

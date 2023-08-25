@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   root 'homes#index'
   resources :homes
   resources :news
-  resources :articles, only: [:show]
+  resources :articles,only: [:show]
 end
