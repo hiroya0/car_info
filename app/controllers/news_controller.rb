@@ -30,7 +30,6 @@ class NewsController < ApplicationController
         end
       end
       @db_articles = Article.all  # ループの外で1回だけ全記事を取得
-    binding.pry
     end
   
     def show
