@@ -23,12 +23,14 @@ class NewsController < ApplicationController
               title: article["title"],
               description: article["description"],
               url: article["url"],
-              article_id: article_id
+              article_id: article_id,
+              image_url: article["image_url"]
             )
             article_instance.save!
         end
       end
       @db_articles = Article.all  # ループの外で1回だけ全記事を取得
+    binding.pry
     end
   
     def show
