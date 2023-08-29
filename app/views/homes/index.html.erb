@@ -21,7 +21,9 @@
           <p class="text-muted"></p>
         </div>
         <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white"></h4>
+          <h4 class="text-white">
+        <p>こんにちは、<%= current_user.name %>さん！</p>
+        </h4>
             <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
         </div>
       </div>
@@ -149,7 +151,8 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">About</h4>
+          <h4 class="text-white">
+      <p>こんにちは、ゲストさん！</p></h4>
           <p class="text-muted"></p>
         </div>
         <div class="col-sm-4 offset-md-1 py-4">
