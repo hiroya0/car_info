@@ -1,3 +1,4 @@
+<% if user_signed_in? %>
 <div class="container mt-4">
  <div class="card">
    <% if @article.urlToImage.present? %>
@@ -13,3 +14,6 @@
    <a href="index">[ニュース一覧へ]</a>
  </div>
 </div>
+<% else %>
+
+<% end %>

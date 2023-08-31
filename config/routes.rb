@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
   root 'homes#index'
+  resources :users
   resources :homes
   resources :news
   resources :articles,only: [:show]
