@@ -15,4 +15,18 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
+
+  private
+
+  def fetch_articles_from_news_api(keyword = "トヨタ")
+    news_api_key = ENV['NEWS_API_KEY']
+    encoded_keyword = URI.encode_www_form_component(keyword)
+    uri = "https://newsapi.org/v2/everything?q=#{encoded_keyword}&sortBy=popularity&apiKey=#{news_api_key}"
+    article_serialized = open(uri).read
+    all_articles = JSON.parse(article_serialized)["articles"]
+
+    all_articles.select do |article|
+      article["url"][/(\d+)(?!.*\d)/].to_i != 0
+    end
+  end
 end
