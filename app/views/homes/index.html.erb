@@ -56,33 +56,35 @@
     </div>
   </section>
 
-
-<h2 class="jumbotron-heading  text-center">ブックマーク数が多い記事</h2>
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row">
+<h2 class="jumbotron-heading  text-center">ブックマークした記事</h2>
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <% @bookmarks.each do |bookmark| %>
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+            <% if bookmark.article.image_url.present? %>
+              <%= image_tag bookmark.article.image_url, class: "card-img-top", alt: "Card image cap" %>
+            <% else %>
+              <p>イラスト屋の画像を表示</p>
+            <% end %>
             <div class="card-body">
-              <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
-              <p class="card-text">縺薙ｌ縺ｯ蜀咏悄縺ｮ隗｣隱ｬ譁�ｻ倥″縺ｮ繧ｫ繝ｼ繝峨〒縺吶り�辟ｶ縺ｫ隱ｬ譏弱ｒ蜉�縺医ｋ縺薙→縺後〒縺阪∪縺吶ゅ＠縺九＠縺薙�譁�ｫ�縺ｯ蟆代＠髟ｷ縺�°繧ゅ＠繧後∪縺帙ｓ縲�</p>
+              <h5 class="card-title"><%= bookmark.article.title %></h5>
+              
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
-                  <button type="button" class="btn btn-sm btn-outline-secondary">隕九ｋ</button>
-                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-                  <button type="button" class="btn btn-sm btn-outline-secondary">邱ｨ髮�</button>
+                  <%= link_to 'ブックマーク詳細', bookmark_path(bookmark), class: "btn btn-sm btn-outline-secondary" %>
+                  
                 </div>
-                <!-- <small class="text-muted">9 mins</small> -->
-                <small class="text-muted">9蛻�</small>
+                <small class="text-muted"></small>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
+</div>
   <h2 class="jumbotron-heading  text-center">最新のコメント</h2>
   <div class="album py-5 bg-light">
     <div class="container">
@@ -192,31 +194,36 @@
 
 
 <h2 class="jumbotron-heading  text-center">ブックマーク数が多い記事</h2>
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row">
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <% @bookmarks.each do |bookmark| %>
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+            <% if bookmark.article.image_url.present? %>
+              <%= image_tag bookmark.article.image_url, class: "card-img-top", alt: "Card image cap" %>
+            <% else %>
+              <p>イラスト屋の画像を表示</p>
+            <% end %>
             <div class="card-body">
-              <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
-              <p class="card-text">縺薙ｌ縺ｯ蜀咏悄縺ｮ隗｣隱ｬ譁�ｻ倥″縺ｮ繧ｫ繝ｼ繝峨〒縺吶り�辟ｶ縺ｫ隱ｬ譏弱ｒ蜉�縺医ｋ縺薙→縺後〒縺阪∪縺吶ゅ＠縺九＠縺薙�譁�ｫ�縺ｯ蟆代＠髟ｷ縺�°繧ゅ＠繧後∪縺帙ｓ縲�</p>
+              <h5 class="card-title"><%= bookmark.article.title %></h5>
+              <p class="card-text"><%= bookmark.article.description %></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
-                  <button type="button" class="btn btn-sm btn-outline-secondary">隕九ｋ</button>
-                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-                  <button type="button" class="btn btn-sm btn-outline-secondary">邱ｨ髮�</button>
+                  <%= link_to '記事を読む', article_path(bookmark.article), class: "btn btn-sm btn-outline-secondary" %>
+                  
                 </div>
-                <!-- <small class="text-muted">9 mins</small> -->
-                <small class="text-muted">9蛻�</small>
+                
+                <small class="text-muted"></small>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
+</div>
+
   <h2 class="jumbotron-heading  text-center">最新のコメント</h2>
   <div class="album py-5 bg-light">
     <div class="container">

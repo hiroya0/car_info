@@ -13,14 +13,12 @@
    </div>
    <%= link_to "[ニュース一覧へ]", news_index_path %>
 
-   <% if user_signed_in? %>
      <% article_id = @article["url"][/(\d+)(?!.*\d)/].to_i %>
      <% if current_user.bookmarked_articles.include?(article_id) %>
         <%= link_to 'お気に入り解除', bookmark_path(article_id: article_id), method: :delete %>
      <% else %>
         <%= link_to 'この記事をブックマーク登録する', bookmarks_path(article_id: article_id), method: :post %>
      <% end %>
-   <% end %>
  </div>
 </div>
 
