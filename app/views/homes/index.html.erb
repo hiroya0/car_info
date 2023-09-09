@@ -21,7 +21,8 @@
         </div>
         <div class="col-sm-4 offset-md-1 py-4">
           <h4 class="text-white">
-      <p>こんにちは、<%= current_user.name %>さん！</p></h4>
+            <%= link_to current_user.name, bookmarks_path, class: 'text-white' %>
+          </h4>
           <p class="text-muted"></p>
             <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
         </div>
@@ -56,28 +57,21 @@
     </div>
   </section>
 
-<h2 class="jumbotron-heading  text-center">ブックマークした記事</h2>
+<h2 class="jumbotron-heading text-center">最新のニュース</h2>
 <div class="album py-5 bg-light">
   <div class="container">
     <div class="row">
-      <% @bookmarks.each do |bookmark| %>
+      <% @latest_articles.each do |article| %>
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-            <% if bookmark.article.image_url.present? %>
-              <%= image_tag bookmark.article.image_url, class: "card-img-top", alt: "Card image cap" %>
+            <% if article["urlToImage"].present? %>
+              <%= image_tag article["urlToImage"], class: "card-img-top", alt: "Card image cap" %>
             <% else %>
               <p>イラスト屋の画像を表示</p>
             <% end %>
             <div class="card-body">
-              <h5 class="card-title"><%= bookmark.article.title %></h5>
-              
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <%= link_to 'ブックマーク詳細', bookmark_path(bookmark), class: "btn btn-sm btn-outline-secondary" %>
-                  
-                </div>
-                <small class="text-muted"></small>
-              </div>
+              <h5 class="card-title"><%= article.title %></h5>
+              <%= link_to "詳細ページへ", article_path(article["url"][/(\d+)(?!.*\d)/].to_i) %>
             </div>
           </div>
         </div>
@@ -191,38 +185,6 @@
       </p>
     </div>
   </section>
-
-
-<h2 class="jumbotron-heading  text-center">ブックマーク数が多い記事</h2>
-<div class="album py-5 bg-light">
-  <div class="container">
-    <div class="row">
-      <% @bookmarks.each do |bookmark| %>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <% if bookmark.article.image_url.present? %>
-              <%= image_tag bookmark.article.image_url, class: "card-img-top", alt: "Card image cap" %>
-            <% else %>
-              <p>イラスト屋の画像を表示</p>
-            <% end %>
-            <div class="card-body">
-              <h5 class="card-title"><%= bookmark.article.title %></h5>
-              <p class="card-text"><%= bookmark.article.description %></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <%= link_to '記事を読む', article_path(bookmark.article), class: "btn btn-sm btn-outline-secondary" %>
-                  
-                </div>
-                
-                <small class="text-muted"></small>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</div>
 
   <h2 class="jumbotron-heading  text-center">最新のコメント</h2>
   <div class="album py-5 bg-light">

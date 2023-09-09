@@ -3,24 +3,28 @@ class BookmarksController < ApplicationController
         @bookmark = Bookmark.find(params[:id])
     end
     
+    def index
+        @bookmarks = current_user.bookmarks
+    end
+
     def create
         bookmark = current_user.bookmarks.new(article: Article.find_by(article_id: params[:article_id]))
-        unless bookmark.save
-            logger.info "Failed to save bookmark due to: #{bookmark.errors.full_messages.join(", ")}"
+        if bookmark.save
+            flash[:success] = "ブックマーク登録しました"
+        else
+            flash[:alert] = "ブックマークに失敗しました"
         end
-        flash[:success] = "ブックマーク登録しました"
         redirect_to article_path(params[:article_id])
     end
       
     def destroy
-        bookmark = current_user.bookmarks.find_by(article_id: params[:article_id])
-    
+        bookmark = current_user.bookmarks.find_by(id: params[:id])
         if bookmark.present?
             bookmark.destroy
-            redirect_to article_path(params[:article_id])
+            redirect_to bookmarks_path
         else
             flash[:alert] = "ブックマークが存在しません"
-            redirect_to root_path #詳細画面に遷移させるのが妥当か
+            redirect_to root_path 
         end
     end
     
