@@ -24,9 +24,15 @@ class ApplicationController < ActionController::Base
     uri = "https://newsapi.org/v2/everything?q=#{encoded_keyword}&sortBy=popularity&apiKey=#{news_api_key}"
     article_serialized = open(uri).read
     all_articles = JSON.parse(article_serialized)["articles"]
-
+  
+    # データベースに存在する記事のIDを取得
+    existing_article_ids = Article.pluck(:article_id)
+  
+    # 取得したニュースの中で、データベースに存在するものだけを選び出す
     all_articles.select do |article|
-      article["url"][/(\d+)(?!.*\d)/].to_i != 0
+      article_id = article["url"][/(\d+)(?!.*\d)/].to_i
+      existing_article_ids.include?(article_id) && article_id != 0
     end
   end
+  
 end

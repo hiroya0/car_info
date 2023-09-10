@@ -1,0 +1,5 @@
+<% if current_user.bookmarked_articles.exists?(id: article["article_id"]) %>
+    <%= link_to 'ブックマーク削除', bookmark_path(current_user.bookmarks.find_by(article_id: article["article_id"])), method: :delete, remote: true, data: { confirm: 'このブックマークを削除しますか？' }, class: "btn btn-sm btn-outline-danger" %>
+<% else %>
+    <%= link_to 'この記事をブックマーク登録する', bookmarks_path(article_id: article["article_id"]), method: :post, remote: true, class: "btn btn-sm btn-outline-primary" %>
+<% end %>
