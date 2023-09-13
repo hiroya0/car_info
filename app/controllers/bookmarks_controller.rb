@@ -8,11 +8,9 @@ class BookmarksController < ApplicationController
     end
 
     def create
-        # 関連するArticleの存在を確認
         article = Article.find_by(article_id: params[:article_id])
         if article.nil?
             flash[:alert] = "関連する記事が存在しません"
-            redirect_to root_path and return
         end
         
         bookmark = current_user.bookmarks.new(article: article)

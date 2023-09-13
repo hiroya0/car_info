@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
     article_serialized = open(uri).read
     all_articles = JSON.parse(article_serialized)["articles"]
   
+    puts all_articles
     # データベースに存在する記事のIDを取得
     existing_article_ids = Article.pluck(:article_id)
   
