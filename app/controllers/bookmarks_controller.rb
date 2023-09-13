@@ -17,7 +17,7 @@ class BookmarksController < ApplicationController
         if bookmark.save
             flash[:success] = "ブックマーク登録しました"
         else
-            flash[:alert] = "ブックマークに失敗しました: #{bookmark.errors.full_messages.join(', ')}"
+            flash[:alert] = "#{bookmark.errors.full_messages.join(', ')}"
         end
         redirect_to article_path(params[:article_id])
     end
@@ -32,5 +32,4 @@ class BookmarksController < ApplicationController
             redirect_to root_path 
         end
     end
-    
 end

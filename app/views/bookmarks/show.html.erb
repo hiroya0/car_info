@@ -1,4 +1,17 @@
-<h2>ブックマーク詳細</h2>
-
-<p>ブックマークした記事タイトル: <%= @bookmark.article.title %></p>
+<div class="container mt-4">
+ <div class="card">
+   <% if @article && @article["urlToImage"].present? %>
+     <%= image_tag @article["urlToImage"], class: "card-img-top" %>
+   <% else %>
+     <p>いらすとやの画像を挿入する</p>
+   <% end %>
+   <div class="card-body">
+     <h5 class="card-title"><%= @bookmark.article["title"] %></h5>
+     <%= @bookmark.article["description"] %>
+     <a href="<%= @bookmark.article["url"] %>" class="btn btn-primary">元の記事を読む</a>
+   </div>
+   <%= link_to "[ニュース一覧へ]", news_index_path %>
+    <%= link_to 'ブックマーク解除', bookmark_path(@bookmark), method: :delete, data: { confirm: 'このブックマークを削除しますか？' }, class: "btn btn-sm btn-outline-danger" %>
+ </div>
+</div>
 <p>ブックマークした日時: <%= @bookmark.created_at %></p>
