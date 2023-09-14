@@ -1,15 +1,41 @@
+<% if user_signed_in? %>
 <div class="container mt-4">
  <div class="card">
-   <% if @article.image_url.present? %>
-     <%= image_tag(@article.image_url, class: "card-img-top") %>
+   <% if @article && @article["urlToImage"].present? %>
+     <%= image_tag @article["urlToImage"], class: "card-img-top" %>
    <% else %>
      <p>いらすとやの画像を挿入する</p>
    <% end %>
    <div class="card-body">
-     <h5 class="card-title"><%= @article.title %></h5>
-     <%= @article.description %>
-     <a href="<%= @article.url %>" class="btn btn-primary" target="_blank">元の記事を読む</a>
+     <h5 class="card-title"><%= @article["title"] %></h5>
+     <%= @article["description"] %>
+     <a href="<%= @article["url"] %>" class="btn btn-primary">元の記事を読む</a>
    </div>
-   <a href="javascript:history.back()">[戻る]</a>
+   <%= link_to "[ニュース一覧へ]", news_index_path %>
+
+     <% article_id = @article["url"][/(\d+)(?!.*\d)/].to_i %>
+     <% if current_user.bookmarked_articles.include?(article_id) %>
+        <%= link_to 'ブックマーク削除', bookmark_path(bookmark), method: :delete, data: { confirm: 'このブックマークを削除しますか？' }, class: "btn btn-sm btn-outline-danger" %>
+     <% else %>
+        <%= link_to 'この記事をブックマーク登録する', bookmarks_path(article_id: article_id), method: :post %>
+     <% end %>
  </div>
 </div>
+
+<% else %>
+<div class="container mt-4">
+ <div class="card">
+   <% if @article && @article["urlToImage"].present? %>
+     <%= image_tag @article["urlToImage"], class: "card-img-top" %>
+   <% else %>
+     <p>いらすとやの画像を挿入する</p>
+   <% end %>
+   <div class="card-body">
+     <h5 class="card-title"><%= @article["title"] %></h5>
+     <%= @article["description"] %>
+   </div>
+   <%= link_to "[ニュース一覧へ]", news_index_path %>
+   
+  </div>
+</div>
+<% end %>

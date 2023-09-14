@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :homes
   resources :news
   resources :articles,only: [:show]
+  resources :bookmarks, only: [:index, :show, :create, :destroy]
 end
