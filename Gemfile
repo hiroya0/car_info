@@ -65,3 +65,7 @@ gem 'dotenv-rails'
 gem 'pry-byebug'
 
 gem 'jquery-rails'
+
+group :production do
+  gem 'pg'
+end
